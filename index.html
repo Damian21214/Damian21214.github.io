@@ -9,7 +9,27 @@
 	<h1>SAC Application embedded</h1>
 	<p>Sample SAC Businness Application Embedded in external web application example</p>
 </div>
-<iframe src="https://spider-pig-dwc.eu10.hcs.cloud.sap/sap/fpa/ui/tenants/956cd/bo/application/E21855878D89BCE7B466F7EDD80BF9B4?mode=present" scrolling="no" width="100%" height="1080px" />
+<div id="app">
+	<label for="message"></label><input id="message" type="text" />
+	<button id="sendMessage">Send Message</button>
+</div>
+<script>
+	const button = document.querySelector("#sendMessage");
+
+	function sendMessage() {
+		const message = document.querySelector("#message").value;
+		const iframe = document.querySelector("iframe");
+		iframe.contentWindow.postMessage(message, "*");
+	}
+
+	button.addEventListener("click", sendMessage);
+</script>
+<script>
+	window.addEventListener('message', function(event) {
+		console.log("Message received from the iframe: " + event.data); // Message received from child
+	});
+</script>
+<iframe id="application" src="https://spider-pig-dwc.eu10.hcs.cloud.sap/sap/fpa/ui/tenants/956cd/bo/application/E21855878D89BCE7B466F7EDD80BF9B4?mode=present" scrolling="no" width="100%" height="1080px" ></iframe>
 <div>
 	Damian Langer
 </div>
