@@ -26,6 +26,8 @@
 </script>
 <script>
 	window.addEventListener('message', function(event) {
+		const message = document.querySelector("#message");
+		message.value = event.data;
 		console.log("Message received from the iframe: " + event.data); // Message received from child
 	});
 </script>
